@@ -1,112 +1,107 @@
-// LOGGIN 
-const usuario = prompt("Cree su nombre de usuario");
-const contraseña = Number(prompt("Cree su contraseña"));
+
 let intentos = 3;
-let saldoActual;
 let opcion;
 
-// Creo un for 
-for (let i = 0; i < 3; i++) {
-    let user = prompt("Ingrese su usuario");
-    let pass = Number(prompt("Ingrese su contraseña"));
+//Array 
+const baseDeDatos = [];
 
-    // Comparo los datos que esta ingresando el usuario para poder ingresar a la plataforma
-    if (!user || !pass) {
-        alert("ingresa los datos solicitados");
-    } else {
-        if (user == usuario && pass == contraseña) {
-
-            alert("Bienvenido " + usuario);
-
-            // Le pedimos al usuario que coloque el saldo actual
-            saldoActual = Number(prompt("Ingrese el Saldo Actual"));
-            alert("Bienvenido al Menu Principal");
-
-            // Creamos el Menu para hacer las operaciones
-            do {
-                opcion = Number(prompt("Que operacion desea realizar: \n1.Consultar el saldo en la cuenta \n"
-                    + "2.Depositar dinero\n"
-                    + "3.Extraer dinero\n"
-                    + "4.Extracción rapida\n"
-                    + "5.Consultar Datos"));
-
-                switch (opcion) {
-                    case 1:
-                        const aviso = consultarSaldo();
-                        alert(aviso);
-                        break;
-                    case 2:
-                        aviso = ingresarDinero();
-                        alert(aviso);
-                        break;
-                    case 3:
-                        aviso = retiroDinero();
-                        alert(aviso);
-                        break;
-                    case 4:
-                        aviso = extracionRapida();
-                        alert(aviso)
-                        break;
-                    case 5:
-                        aviso = consultarDatos();
-                        alert(aviso)
-                        break;
-                    default:
-                        alert("Ingrese una opcion correcta")
-
-                }
-            } while (opcion != 5);
-        }
-        alert("Usuario y/o pass incorrecto. Te quedan " + intentos + " intentos");
-    }
-    intentos--;
+// Loggin
+function Cliente(usuario, contraseña, saldoActual) {
+    this.usuario = usuario;
+    this.contraseña = Number(contraseña);
+    this.saldoActual = Number(saldoActual);
 }
-if (intentos <= 0) { alert("Usuario Bloqueado"); }
 
-// Consultar Saldo
-function consultarSaldo() {
-    return "Su Saldo Actual es de: $" + saldoActual;
-}
+// Creamos el Objeto 
+const persona = new Cliente(prompt("Cree su nombre de usuario"), prompt("Cree su contraseña en numero"), Number(prompt("Ingrese su saldo actual")));
+
+// Generamos un Push para pushear los datos ingresados al array
+baseDeDatos.push(persona);
 
 // Ingresar Dinero a la Cuenta
 function ingresarDinero() {
     let ingreso = Number(prompt("Ingrese la cantidad de desee depositar "));
-    saldoActual = (saldoActual + ingreso);
-    alert("Su saldo actual es: $" + saldoActual + " , ingresó $" + ingreso);
+    persona.saldoActual = (persona.saldoActual + ingreso);
+    alert("Ingresó $" + ingreso);
 }
 
 // Retirar Dinero de la Cuenta
 function retiroDinero() {
     let retiro = Number(prompt("Ingrese el monto que desee extraer"));
-    if (retiro <= saldoActual) {
-        saldoActual = (saldoActual - retiro);
-        alert("Su Saldo Actual es de: $" + saldoActual + ", extrajo: $" + retiro);
-
+    if (retiro <= persona.saldoActual) {
+        persona.saldoActual = (persona.saldoActual - retiro);
+        alert("Extrajo: $" + retiro);
     } else {
         alert("Su saldo es insuficiente");
     }
 }
 
-// Extraccion Rapida, Al usar la Extraccion Rapida, solo puede sacar un 20% del total de su Saldo
-function extracionRapida() {
-    let extraccion = Number(prompt("Ingrese el monto que desee extraer"));
+//  Consulta Datos
+function consultarDatos() {
+    alert("Su Nombre de Usuario es: " + persona.usuario);
+    alert("Su Contraseña es: " + persona.contraseña);
+}
 
-    if (extraccion <= saldoActual * 0.2) {
+// Consultar Saldo
+function consultarSaldo() {
+    alert("Su Saldo Actual es de: $" + persona.saldoActual);
+}
 
-        saldoActual = (saldoActual - extraccion);
-        alert("Su saldo Actual es de: $" + saldoActual + ", extrajo: $" + extraccion);
+// Generamos un For tradiconal
+for (let i = 0; i < 3; i++) {
+    let user = prompt("Ingrese su usuario");
+    let pass = Number(prompt("Ingrese su contraseña"));
+
+    // Si coloca otro dato que no sean los pedido les saldra el siguien mensaje
+    if (!user || !pass) {
+        alert("ingresa los datos solicitados");
+
     } else {
-        alert("No puede extraer más del 20% del total del saldo disponible");
 
+        const buscarCliente = (ar, busqueda) => {
+            const encontrado = ar.find((cliente) => {
+                return cliente.usuario.includes(busqueda);
+            })
+            return encontrado;
+        }
+        const usuarioEncontrado = buscarCliente(baseDeDatos, user)
+        console.log(usuarioEncontrado);
+
+        // Si los datos ingresados Coinciden le damos la Bienvenida
+        if ( user == persona.usuario && pass == persona.contraseña) {
+
+            alert("Bienvenido " + persona.usuario);
+            alert("Bienvenido al Menu Principal");
+
+            // Creamos el Menu para hacer las operaciones
+            do {
+                opcion = Number(prompt("Que operacion desea realizar: \n1.Depositar dinero \n2.Extraer dinero \n3.Consultar Saldo \n4.Consultar Datos de la Cuenta \n5.Salir"));
+
+                switch (opcion) {
+                    case 1:
+                        ingresarDinero();
+                        break;
+                    case 2:
+                        retiroDinero();
+                        break;
+                    case 3:
+                        consultarSaldo();
+                        break;
+                    case 4:
+                        consultarDatos();
+                        break;
+                    case 5:
+                        alert("Muchas Gracias")
+                        break;
+                    default:
+                        alert("Ingrese una opcion correcta")
+                }
+            } while (opcion != 5);
+            break;
+        } else {
+            alert("Usuario y/o Contraseña incorrecto. Te quedan " + intentos + " intentos");
+            intentos--;
+        }
     }
 }
-
-// Consulta Datos
-function consultarDatos() {
-    alert("Su nombre de Usuario es: " + usuario);
-    alert("Su Saldo Actual es de: $" + saldoActual);
-}
-
-
-
-
+if (intentos <= 0) { alert("Usuario Bloqueado"); }
