@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: rgba(95, 70, 118, 0.895);
+    color: black;
+    padding: 10px;
+    overflow: hidden;
+}
+button {
+    border: 1px solid black;
+    width: 270px;
+    height: 80px;
+    background-color: rgba(95, 70, 118, 0.895);
+}
+.fondo-index {
+    background-image: url("./img/fondo.jpg");
+    background-repeat: no-repeat;
+    background-position: 55% 45% ;
+    background-size: auto;
+
+}
+
+.form-register {
+    width: 500px;
+    background-color: rgba(95, 70, 118, 0.895);
+    padding: 30px;
+    margin: auto;
+    margin-top: 300px;
+    border-radius: 10px;
+    font-family: "Encode Sans";
+    color: black;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Encode Sans";
+    text-transform: uppercase;
+}
+
+.form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.form-register a:hover {
+    text-decoration: underline;
+}
+
+.form-register a {
+    color: rgb(47, 34, 58);
+}
+
+.form-register .botons {
+    width: 100%;
+    background: rgb(47, 34, 58);
+    border: none;
+    color: black;
+    margin: 18px 0;
+    font-size: 20px;
+    font-family: "Encode Sans";
+    text-transform: uppercase;
+}
+
+.fondo-inicio {
+    background-image: url("./img/fondo_inicio.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+}
+
+.logo {
+    float: left;
+    font-size: 30px;
+    font-family: "secular one";
+}
+
+.usuario {
+    float: right;
+    font-size: 26px;
+    text-align: right;
+    margin-top: 5px;
+    font-family: "secular one";
+}
+
+.container {
+    display: flex;
+    margin-top: 130px;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0 10px;
+     font-size:30px; 
+    font-family: "Encode Sans"
+    
+}
+
+.controls {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    border: 1px solid;
+    font-size: 18px;
+    
+}
+
+.saldo-actual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 80px;
+  }
+  
+  .number-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 370px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(95, 70, 118, 0.895);
+    font-family: "Encode Sans"
+  }
+  
+  .number {
+    font-size:30px;
+  }
+  

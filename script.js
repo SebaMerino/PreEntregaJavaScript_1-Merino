@@ -1,22 +1,18 @@
 
-let intentos = 3;
-let opcion;
+//Implementamos Json y LocalStorage
+let baseDeDatos = JSON.parse(localStorage.getItem("datos")) || [];
 
-//Array 
-const baseDeDatos = [];
+// Creamos un objeto que contendrá los datos cargados
+const datos = {
+    clientes: baseDeDatos
+};
 
 // Loggin
-function Cliente(usuario, contraseña, saldoActual) {
+function Cliente(usuario, contraseña, email) {
     this.usuario = usuario;
-    this.contraseña = Number(contraseña);
-    this.saldoActual = Number(saldoActual);
+    this.contraseña = contraseña;
+    this.email = email;
 }
-
-// Creamos el Objeto 
-const persona = new Cliente(prompt("Cree su nombre de usuario"), prompt("Cree su contraseña en numero"), Number(prompt("Ingrese su saldo actual")));
-
-// Generamos un Push para pushear los datos ingresados al array
-baseDeDatos.push(persona);
 
 // Ingresar Dinero a la Cuenta
 function ingresarDinero() {
@@ -44,64 +40,27 @@ function consultarDatos() {
 
 // Consultar Saldo
 function consultarSaldo() {
-    alert("Su Saldo Actual es de: $" + persona.saldoActual);
+    alert("Su Saldo Actual es de: $");
 }
 
-// Generamos un For tradiconal
-for (let i = 0; i < 3; i++) {
-    let user = prompt("Ingrese su usuario");
-    let pass = Number(prompt("Ingrese su contraseña"));
+// Agregamos el evento Click ah iniciar Sesion
+const btnIniciarSesion = document.getElementById("inicioSesion");
+btnIniciarSesion.addEventListener("click", () => {
+    // obtenemos los valores ingresados
+    const nombreDeUsuario = document.getElementById("nombre").value;
+    const contraseña = document.getElementById("contraseña").value;
 
-    // Si coloca otro dato que no sean los pedido les saldra el siguien mensaje
-    if (!user || !pass) {
-        alert("ingresa los datos solicitados");
-
+    // Buscamos en el Array el usuario 
+    const usuarioRegistrado = baseDeDatos.find(usuario => usuario.usuario === nombreDeUsuario && usuario.contraseña === contraseña);
+    console.log(usuarioRegistrado);
+    if (usuarioRegistrado) {
+        window.location.href = "../paginas/inicio.html";
     } else {
-
-        const buscarCliente = (ar, busqueda) => {
-            const encontrado = ar.find((cliente) => {
-                return cliente.usuario.includes(busqueda);
-            })
-            return encontrado;
-        }
-        const usuarioEncontrado = buscarCliente(baseDeDatos, user)
-        console.log(usuarioEncontrado);
-
-        // Si los datos ingresados Coinciden le damos la Bienvenida
-        if ( user == persona.usuario && pass == persona.contraseña) {
-
-            alert("Bienvenido " + persona.usuario);
-            alert("Bienvenido al Menu Principal");
-
-            // Creamos el Menu para hacer las operaciones
-            do {
-                opcion = Number(prompt("Que operacion desea realizar: \n1.Depositar dinero \n2.Extraer dinero \n3.Consultar Saldo \n4.Consultar Datos de la Cuenta \n5.Salir"));
-
-                switch (opcion) {
-                    case 1:
-                        ingresarDinero();
-                        break;
-                    case 2:
-                        retiroDinero();
-                        break;
-                    case 3:
-                        consultarSaldo();
-                        break;
-                    case 4:
-                        consultarDatos();
-                        break;
-                    case 5:
-                        alert("Muchas Gracias")
-                        break;
-                    default:
-                        alert("Ingrese una opcion correcta")
-                }
-            } while (opcion != 5);
-            break;
-        } else {
-            alert("Usuario y/o Contraseña incorrecto. Te quedan " + intentos + " intentos");
-            intentos--;
-        }
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Complete los Campos',
+            showConfirmButton: true
+        })
     }
-}
-if (intentos <= 0) { alert("Usuario Bloqueado"); }
+});
