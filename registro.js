@@ -38,7 +38,7 @@ btnRegistrarCliente.addEventListener("click", () => {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Complete los Campos',
+            title: 'Se Registro con Exito',
             showConfirmButton: true
         })
     }
