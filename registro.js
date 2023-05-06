@@ -2,6 +2,9 @@
 //Array
 const baseDeDatos = [];
 
+// Nos traemos los elementos HTML
+const btnRegistrarCliente = document.getElementById("agregarCliente")
+
 // Loggin
 function Cliente(usuario, contraseña, email) {
     this.usuario = usuario;
@@ -9,9 +12,7 @@ function Cliente(usuario, contraseña, email) {
     this.email = email;
 }
 
-
 // Generamos un Push para pushear los datos ingresados al array
-const btnRegistrarCliente = document.getElementById("agregarCliente")
 btnRegistrarCliente.addEventListener("click", () => {
     // obtenemos los valores ingresados
     const nombreDeUsuario = document.getElementById("nombre").value;
@@ -33,7 +34,6 @@ btnRegistrarCliente.addEventListener("click", () => {
         baseDeDatos.push(nuevoCliente);
         // Guardamos la base de datos en el almacenamiento local del navegador
         localStorage.setItem("datos", JSON.stringify(baseDeDatos));
-        console.log(baseDeDatos);
 
         Swal.fire({
             position: 'center',
@@ -41,9 +41,12 @@ btnRegistrarCliente.addEventListener("click", () => {
             title: 'Se Registro con Exito',
             showConfirmButton: true
         })
+        
+        // reiniciamos los campos del formulario
+        document.getElementById("nombre").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("contraseña").value = "";
     }
-
-    // Redirigimos al usuario a la apaina de inicio
-    // window.location.href = "../index.html";
+    
 });
 

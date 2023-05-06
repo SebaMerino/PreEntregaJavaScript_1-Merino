@@ -10,16 +10,18 @@ header {
     padding: 10px;
     overflow: hidden;
 }
+
 button {
     border: 1px solid black;
     width: 270px;
     height: 80px;
     background-color: rgba(95, 70, 118, 0.895);
 }
+
 .fondo-index {
     background-image: url("./img/fondo.jpg");
     background-repeat: no-repeat;
-    background-position: 55% 45% ;
+    background-position: 55% 45%;
     background-size: auto;
 
 }
@@ -73,8 +75,8 @@ button {
 .fondo-inicio {
     background-image: url("./img/fondo_inicio.jpg");
     background-repeat: no-repeat;
-    background-size:cover;
-    
+    background-size: cover;
+
 }
 
 .logo {
@@ -93,14 +95,15 @@ button {
 
 .container {
     display: flex;
-    margin-top: 130px;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 10px;
     padding: 0 10px;
-     font-size:30px; 
+    height: 700px;
+    justify-content: space-evenly;
+    margin-top: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(95, 70, 118, 0.895);
+    font-size: 30px;
     font-family: "Encode Sans"
-    
 }
 
 .controls {
@@ -110,19 +113,18 @@ button {
     margin-bottom: 18px;
     border: 1px solid;
     font-size: 18px;
-    
+
 }
 
-.saldo-actual{
+.saldo-actual {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin-top: 80px;
-    /* border: 1px solid black ; */
-  }
-  
-  .number-box {
+}
+
+.number-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,10 +133,30 @@ button {
     border: 1px solid black;
     border-radius: 10px;
     background-color: rgba(95, 70, 118, 0.895);
+    font-size: 30px;
     font-family: "Encode Sans"
-  }
-  
-  .number {
-    font-size:30px;
-  }
-  
+}
+
+.caja {
+    margin-top: 80px;
+    border-radius: 10px;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 20px;
+    font-family: "Encode Sans"
+}
+
+.dropdown-menu.show {
+    display: block;
+}
