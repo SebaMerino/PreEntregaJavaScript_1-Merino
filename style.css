@@ -159,4 +159,6 @@ button {
 
 .dropdown-menu.show {
     display: block;
+    background-color: rgba(95, 70, 118, 0.895);
+    border: 1px solid black;
 }
