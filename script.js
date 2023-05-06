@@ -1,3 +1,4 @@
+
 //Implementamos Json y LocalStorage
 let baseDeDatos = JSON.parse(localStorage.getItem("datos")) || [];
 
@@ -48,3 +49,4 @@ btnIniciarSesion.addEventListener("click", () => {
     }
 
 });
+
